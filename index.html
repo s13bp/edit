@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@700&family=Lato:wght@300;700&family=Roboto+Condensed:wght@300&display=swap"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sbuttons/dist/sbuttons.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/computer.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" media="screen and (max-width: 480px) and (orientation:portrait)" href="css/mobile.css">
+    <link rel="icon" href="images/A.png">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abel&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syncopate&display=swap">
+
+    <title>MR PUDDLES</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background-color: #474e5d;
+        font-family: Helvetica, sans-serif;
+      }
+      
+      /* The actual timeline (the vertical ruler) */
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      /* The actual timeline (the vertical ruler) */
+      .timeline::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        background-color: white;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+      }
+      
+      /* Container around content */
+      .container {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+      }
+      
+      /* The circles on the timeline */
+      .container::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -17px;
+        background-color: white;
+        border: 4px solid #FF9F55;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      
+      /* Place the container to the left */
+      .left {
+        left: 0;
+      }
+      
+      /* Place the container to the right */
+      .right {
+        left: 50%;
+      }
+      
+      /* Add arrows to the left container (pointing right) */
+      .left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid white;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent white;
+      }
+      
+      /* Add arrows to the right container (pointing left) */
+      .right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+      }
+      
+      /* Fix the circle for containers on the right side */
+      .right::after {
+        left: -16px;
+      }
+      
+      /* The actual content */
+      .content {
+        padding: 20px 30px;
+        background-color: white;
+        position: relative;
+        border-radius: 6px;
+      }
+      
+      /* Media queries - Responsive timeline on screens less than 600px wide */
+      @media screen and (max-width: 600px) {
+        /* Place the timelime to the left */
+        .timeline::after {
+        left: 31px;
+        }
+        
+        /* Full-width containers */
+        .container {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        }
+        
+        /* Make sure that all arrows are pointing leftwards */
+        .container::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+        }
+      
+        /* Make sure all circles are at the same spot */
+        .left::after, .right::after {
+        left: 15px;
+        }
+        
+        /* Make all right containers behave like the left ones */
+        .right {
+        left: 0%;
+        }
+      }
+      </style>
+      <style>
+
+*
+{
+  padding:0;
+  margin:0;
+}
+.prof
+{
+  width: 60%;
+  margin:auto;
+}
+h1
+{
+  font-size: 1.75em;
+  padding:0;
+  margin:0;
+}
+.header
+{
+  display: flex;
+  justify-content:space-between;
+}
+
+h2
+{
+  font-size:1.25em;
+  padding-bottom:0.5em;
+}
+
+.line
+{
+  height: 3px;
+  padding:0;
+  margin:0;
+  border:0;
+  background-color:grey;
+}
+
+.length
+{
+  padding:0;
+  margin:0;
+}
+.full-length
+{
+  background-color: grey;
+  height:10px;
+}
+
+.given-length
+{
+  background-color:hsl(200,100%,45%);
+  height: 20px;
+  transform: translateY(-15px);
+}
+
+.p1
+{
+  width:90%;
+}
+
+.p2
+{
+  width:70%;
+}
+
+.p3
+{
+  width:100%;
+}
+
+.part
+{
+  padding: 0.5em 0 0.2em 0;
+}
+
+section
+{
+  padding: 2em;
+  display: flex;
+  justify-content:center;
+}
+.pie-chart 
+{
+  font-size:1.25em;
+  display:grid;
+  place-items: center;
+	background:
+		conic-gradient(
+			rgb(6, 223, 42) 0,
+			rgb(43, 246, 7) 25%,
+			rgb(236, 5, 5) 0,
+			rgb(255, 0, 0) 50%,
+			rgb(238, 255, 0) 0,
+			rgb(238, 255, 0) 67%,
+			rgb(42, 166, 255) 0,
+			rgb(0, 166, 255) 84%,
+			rgb(0, 166, 255) 0,
+			rgb(0, 166, 255) 94%,
+			rgb(0, 166, 255) 0,
+			#00a6ff 100%
+	);
+	position: relative;
+	width: 300px;
+	height: 300px;
+	margin: 0;
+	border-radius:50%;
+}
+.inner
+{
+  display:grid;
+  place-items:center;
+  background:white;
+  width:225px;
+  height:225px;
+  border-radius:50%;
+}
+.option
+{
+  display: flex;
+  gap: 10px;
+  height: 1.5em;
+}
+.index
+{
+  font-size:1.25em;
+  margin:0 3em;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+}
+.colour-box
+{
+  display: inline-block;
+  height:20px;
+  width:20px;
+  border:1px solid rgb(0, 4, 230);
+}
+.c1
+{
+  background:rgb(0, 230, 19);
+}
+.c2
+{
+  background:rgb(224, 82, 15);
+}
+.c3
+{
+  background:rgb(234, 238, 5);
+}
+.c4
+{
+  background:hsl(200,100%,75%);
+}
+
+
+
+      </style>
+    <style>
+        body {
+            font-family: 'Abel', sans-serif;
+        }
+    </style>
+    <style>
+            h1 {
+                font-family: 'Abel', sans-serif;
+                font-weight: 100;
+            }
+    </style>
+         <style>
+            h5 {
+                font-family: 'Abel', sans-serif;
+                font-style: italic;
+            }
+        </style>
+          <style>
+            h2,h4 {
+                font-family: 'Abel', sans-serif;
+            }
+        </style>
+          <style>
+            h6 {
+                font-family: 'Syncopate', sans-serif;
+                font-weight: 100;
+            }
+        </style>
+        <style>
+
+            .w3-third {
+              
+              position: relative;
+              display: inline-block;
+              height: 100%;              
+            }
+        </style>
+       
+   
+</head>
+
+<body onload="fadeInNavbar()">
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-wide w3-padding w3-card">
+          <a href="#home" class="w3-bar-item w3-button"><b>ASCENDANCE |</b> </a>
+          <!-- Float links to the right. Hide them on small screens -->
+          <div class="w3-right w3-hide-small">
+            <a href="#about" class="w3-bar-item w3-button">About</a>           
+            <a href="#tokenomics" class="w3-bar-item w3-button">Tokenomics</a>
+            <a href="#roadmap" class="w3-bar-item w3-button">Roadmap</a>           
+            
+          </div>
+        </div>
+      </div>
+
+      
+
+      <header class="w3-display-container w3-content w3-wide" style="max-width:100%;" id="home">
+       
+        <div class="w3-display-middle w3-margin-top w3-center ">
+          <h1 class="w3-xxlarge w3-text-grey"><span class="w3-padding w3-jumbo w3-black w3-opacity-min"  data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" data-aos-easing="ease-in-quad" ><b>ASCENDANCE</b></span> <span class="w3-hide-small w3-text-grey"  data-aos="fade-in"  data-aos-duration="1000" data-aos-anchor-placement="top-bottom"><b> COIN </b></span></h1>
+          <br><br>
+          <h5 class="w3-text-grey"  data-aos="fade-in" data-aos-duration="2000" data-aos-anchor-placement="top-bottom">"The New Standard in Decentralized Trading"</h5>
+        </div>
+      </header>
+
+   
+
+  <!-- First Grid -->
+        <div  id="about" class="w3-row-padding w3-padding-64 w3-black w3-text-white w3-container ">
+            <h1 class="w3-xxlarge w3-text-white w3-center"><span class="w3-padding w3-black w3-opacity-min" data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-duration="1500" data-aos-easing="ease-in-quad" ><b>WELCOME TO THE CHANGE</b></span> <span class="w3-hide-small w3-text-light-grey"></span></h1>
+            <br> <br>
+            <div class="w3-content">
+               
+            <div  class="w3-twothird">
+                <h1  data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" class="w3-text-light-grey">OVERVIEW</h1>
+                <hr data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" style="width:200px" class="w3-opacity">
+                <h4 data-aos="fade-right" data-aos-anchor-placement="top-bottom" data-aos-duration="1000"  class="w3-padding-32 w3-text-light-grey">At Ascendance we plan to aim to transform how people view altcoins and the dangers associated with them, with our ground-up built DEX. Every utility being planned has never been done and will trully be inovative and change not only BSC, but all other blockchains that suffer from rampant scams. </h4>
+        
+                <h4 data-aos="fade-left" data-aos-anchor-placement="top-bottom" data-aos-duration="1000" class="w3-text-light-grey">Ascendance isn't just another boring DEX in a land of boring DEX's. We're on a mission to shake up how things are in this space. We want to be the first thing people go to when investing using our other planned tools not only for investors but for developers. We want to encourage those who have big dreams or even simple ideas to come and build their projects with us. What is this space without new ideas? Our team is dedicated to the mission of changing perceptions on what this space should be. Projects launched with us will not only have a better platform for investors to see their idea but also much more streamlined for investors to make a purchase. Dedicated and determined to make this space what it should have been from the start. </h4> <br><h4 data-aos="fade-right" data-aos-duration="1000"  data-aos-anchor-placement="top-bottom" class="w3-text-light-grey"> We believe decentralized trading should remain decentralized. We will never ask a developer or team to reveal their identities since it doesn't stop the bad apples from taking advantage of investors. 
+                  We want to set a new standard for what launchpads should be. Currently many take advantage of project makers by taking an unfair piece of the pie which ultimately causes havoc post lauch not only for developers but all the people already invested. We have no desire to roadblock your projects growth, if you succeed then we all do.
+                  </h4>
+                  <h4 data-aos="fade-right" data-aos-duration="1000" data-aos-anchor-placement="top-bottom" class="w3-text-light-grey">
+                    We will reveal our protocols in time. But for now we pledge to you, scammers days are numbered and others will need to follow our lead if they want investors trust. 
+                  </h4>
+            </div>
+        
+            <div class="w3-third w3-center">
+                <img src="images/tech.png"  class="w3-image" data-aos="flip-right"  data-aos-duration="1000"
+                data-aos-anchor-placement="top-bottom">
+            </div>
+            </div>
+         </div>
+
+        <div class="w3-container  w3-black w3-text-light-grey"  id="about">
+            <h1 class="w3-center w3-xxlarge" data-aos="fade-in" data-aos-anchor-placement="top-bottom" data-aos-duration="2500" class="w3-text-light-grey">WHY ASCENDANCE ?</h1>
+            <br><br><br><br> 
+            <div data-aos="fade-up" data-aos-duration="1000" class="w3-row-padding  w3-center" >
+              <div class="w3-third w3-section  w3-leftbar  w3-hover-border-green ">
+              
+                <p class="w3-xxlarge">RUG FREE</p>
+                <h4>We truly believe we can fully eliminate rugs and other scams by eliminating them at the source instead of being reactive. While having sniffing tools is great to research tokens it will never truly protect investors because a rug can happen at anytime. No shovelware here, either it does what we claim or we don't do it. </h4> <br><br><br><br><br><br> <h4>
+
+                </h4>
+              </div>
+              <div class="w3-third w3-section  w3-leftbar  w3-hover-border-green">
+                
+                <p class="w3-xxlarge">SECURE</p>
+                <h4>We aim to be the most secure DEX in DeFi. Our priority isn't controlling what people want to launch but to make sure whatever it is has the investors best interest in mind. We want to take the guesswork out of things and let investors focus on the project and trading. If a token is listed with us you shouldn't have to dig through smart contracts, run background checks on developers or any other nonsense. Our goal is to be the most trusted DEX out and if tokens aren't launching with us there's a good chance they not so good intentions long term.  </h4>  <br> <h4></h4>
+              </div>
+              <div class="w3-third w3-section  w3-leftbar  w3-hover-border-green">
+              
+                <p class="w3-xxlarge">SIMPLE</p>
+                <h4>DeFi is overly complicated and fragmented. The learning curve is generally too much for investors and by the time they figure it out they lost most their money. We want to streamline not only trading but also launching projects. DeFi is all about anyone being able to create a project and taking a chance it works out. Unfortunately with that comes a lot of issues like broken contracts, wrongly calculated starting liquidity, unlocked liquidity that sends people into a panic and so on. Why are we making everything so complex? List, trade, take a gamble is how easy it should be.  </h4>
+              </div> 
+              
+            </div>
+          </div>
+          
+           
+          
+          <div id="tokenomics" class="w3-row-padding w3-padding-64 w3-black w3-text-white w3-container ">
+            <br><br><br><br><br> <br>
+            <br> <br>
+            <div  class="w3-content">
+                <h6  data-aos="fade-up"  data-aos-duration="2000" class="w3-text-grey">TAXES AND SUPPLY</h6>
+                <h1  data-aos="fade-up"  data-aos-duration="1000" class="w3-jumbo w3-text-white  ">TOKENOMICS</h1>
+               
+            <div data-aos="zoom-in-down"  data-aos-duration="1000" class="w3-twothird">
+               
+                <h4   class="w3-xlarge w3-padding-32 w3-text-light-grey">Everyone wants to moon but nobody wants to hold so what's the best solution? We believe setting targets and gradually raising sell limits at those targets is the best solution for existing holders while protecting new ones. 
+                  You can't get rich if you don't hold right? No invasive taxes that take all possible gains or complex rules on when you can sell or for how much. We hit the target market caps you can sell for specified amounts not complicated.
+                  </h4>
+                  <h4   class="w3-xlarge w3-padding-32 w3-text-light-grey">
+                    You are allowed to sell once per day so pick wisely when you choose to sell because you might miss a higher target in that 24 hour period. 
+                    All wallet to wallet transfers will be blocked so don't try to bypass sell limits it won't work for you.
+                     </h4>
+        
+              
+            </div>
+        
+            <div class="w3-third w3-center">
+                <img src="images/tokenomics.png"  class="w3-image" data-aos="flip-right"  data-aos-duration="1000"
+                data-aos-anchor-placement="top-bottom"> <br><br><br><br>
+            </div>
+            <br>
+            </div>
+            <br> <br> <br> <br> <br>
+            <div  data-aos="fade-down" 
+            data-aos-easing="linear"
+            data-aos-duration="1000" class="w3-row-padding">
+                <div class="w3-third w3-container w3-center w3-margin-bottom">
+                  
+                  <div class="w3-container w3-border w3-border-black w3-round-xlarge w3-indigo">
+                    <h2 class="w3-xxlarge">MARKETING</h2>
+                    <h4>We plan to slow build hype for several weeks leading up to presale using only proven partners to best optimize money spent. There's no reason to throw money at everything and hope it works. We are spending investors money so we need to be smart with how it's used. Post launch a majority of marketing will be done with partnerships and onboarding. If money made everything reach high market caps you'd see that result but you don't. If it doesn't make sense and we don't get a return for the money spent we won't do it. Most important phase for marketing is pre launch that's where our main focus will be.  </h4>
+                    
+                  </div>
+                </div>
+                <div class="w3-third w3-container w3-center w3-margin-bottom">
+                 
+                  <div class="w3-container w3-border w3-round-xlarge w3-border-black w3-indigo">
+                    <h2 class="w3-xxlarge">LIQUIDITY</h2>
+                    <h4>Initial liquidity will be locked for 3 months in order to time with the DEX launch. We don't anticipate needing a new smart contract so a full migration won't be needed just a liquidity migration from PancakeSwap to our pool. Migrations are a hassle and generally means a lot of investors left behind due to issues. We want to prevent that and make the process fast and painless for investors so we can resume trading within 24 hours no investors left behind. If the majority would rather leave it locked and do a more traditional method for migration we can leave it locked to protect liquidity.  </h4>
+                    
+                  </div>
+                </div>
+                <div class="w3-third  w3-round-xlarge w3-center  w3-container">
+                  
+                  <div class="w3-container  w3-round-xlarge w3-indigo">
+                    <h2 class="w3-xxlarge">INCENTIVES</h2> 
+                    <h4>We want to make the DEX as lucrative as possible for holders. All token holders will receive 50% of all transactions on the DEX in BNB straight to their wallets. No need to stake, no additional fees required. 
+                     You hold "X" amount and you will be sent dividends. There's other avenues we are planning for revenue which will all be split same way to holders. We don't want people to sell and we need a reason for new investors to buy. <br><br><br><br> </h4>
+                  </div>
+                </div>
+              </div>
+            
+
+            </div>
+            <div class="w3-container w3-black w3-text-white w3-center"><br><br><br><br><br><br><br><br>
+              <p class="w3-xxlarge" data-aos="fade-down"  data-aos-duration="1000">10 Billion starting supply</p> <br><br>
+              <div class="w3-xlarge">
+                <div  data-aos="fade-up"  data-aos-duration="1000">
+                  <p>$0 to $1M Marketcap - 1 BNB per day</p>
+                  <p>$1M Marketcap to $5M - 2 BNB per day</p>
+                  <p>$5M Marketcap to $10M - 3 BNB per day</p>
+                  <p>$10M Marketcap to $20M - 5 BNB per day</p>
+                  <p>$20M Marketcap to $50M - 10 BNB per day</p>
+                  <p>$50M Marketcap to $100M - 20 BNB per day</p>
+                  <p>$100M Marketcap to $500M - 30 BNB per day</p>
+                  <p>$500M Marketcap to $1.25B - 50 BNB per day</p>
+                </div><br><br>
+                
+               </div>
+
+            </div>
+            <div class="w3-row-padding w3-padding-64 w3-black w3-text-white w3-container">
+              <h1  data-aos="fade-up"  data-aos-duration="1000" class="w3-jumbo w3-text-white w3-center ">TAX ALLOCATION</h1><p class="w3-content" data-aos="fade-up"  data-aos-duration="5000">TOTAL TAX : 12%</p>
+              <section class="w3-container" data-aos="zoom-in-down" data-aos-duration="1000">
+                <figure class="pie-chart">
+                  <div class="inner">
+                    <div>
+                      
+                    </div>
+                  </div>
+                </figure>
+                <div class="index">
+                  <div class="option">
+                    <div class="colour-box c1"></div>
+                  <div>LIQUIDITY(3%)</div>
+                  </div>
+                  <div class="option">
+                    <div class="colour-box c2"></div>
+                    <div>MARKETING(3%)</div>
+                  </div>
+                  <div class="option">  
+                    <div class="colour-box c3"></div>
+                    <div>HOLDER REFLECTION(2%)</div>
+                  </div>
+                  
+                  <div class="option">
+                     <div class="colour-box c4"></div>
+                     <div>DEVELOPMENT(4%)</div>
+                  </div>
+                  
+                 
+                </div>
+                </section>  
+
+               
+             
+
+            </div>
+
+            <div id="roadmap"  class="w3-row-padding w3-padding-64 w3-black w3-text-black w3-container ">
+              <h1 class="w3-jumbo w3-text-white w3-center"data-aos="fade-right"  data-aos-anchor-placement="top-bottom" data-aos-duration="500" >ROADMAP</h1>
+              <br><br><br><br>
+              <div class="w3-content">
+
+
+                <div class="timeline w3-large" data-aos="zoom-out-down"  data-aos-duration="1000"  >
+                  <div class="container left">
+                    <div class="content">
+                      <h2>Q 1</h2>
+                      <h3>⦿ Presale</h3>
+                      <h3>⦿ Launch</h3>
+                      <h3>⦿ Alpha DEX public testing</h3>
+                    </div>
+                  </div>
+                  <div class="container right">
+                    <div class="content">
+                      <h2>Q 2</h2>
+                      <h3>⦿ DEX public release</h3>
+                      <h3>⦿ Token creation portal</h3>
+                      <h3>⦿ Project onboarding</h3>
+                      
+                    </div>
+                  </div>
+                  <div class="container left">
+                    <div class="content">
+                      <h2>Q 3 </h2>
+                      <h3>⦿ Forum integration Onboarding</h3>
+                      <h3>⦿ Launch pad</h3>
+                      <h3>⦿ Liquidity Migration Tool</h3>
+                      
+                    </div>
+                  </div>
+                  <div class="container right">
+                    <div class="content">
+                      <h2>Q 4 </h2>
+                      <h3>⦿ TBA</h3>
+                    
+                    </div>
+                  </div>
+                 
+                 
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <div class="w3-container w3-black w3-text-white" >
+              <h1 class="w3-jumbo w3-text-white w3-center"data-aos="fade-right"  data-aos-anchor-placement="top-bottom" data-aos-duration="500" >PRIVATE & PRESALE</h1><br><br><br>
+              <div class="w3-content">
+                  <h4 class="w3-xlarge w3-center" data-aos="fade-right"  data-aos-anchor-placement="top-bottom" data-aos-duration="500">
+                    Private sale funds will be used to hire talented coders to build out our ideas and to also market the presale in order to have buy pressure at launch. Pre-launch marketing is the most important step to have awareness and demand. Unfortunately it's a neccesary evil in this space and without it we'd be just another pump and dump with a 1 day lifespan. All private sale backers will receive a 20% bonus over presale and launch day rates. There's no vesting periods since the tokenomics are there to prevent large selloffs. 
+                  </h4><br><br><br><br>
+                  <h4 class="w3-xlarge w3-center" data-aos="fade-right"  data-aos-anchor-placement="top-bottom" data-aos-duration="500">
+                    Presale ideally will be hosted through the smart contract over other platforms. Giving up 2% of supply or more to use other platforms isn't good for us or for your money. We'd be penalized for succeding and they'll capitalize by selling $1+ Million and it's your money they're taking. We've watched it happen on every succesful project and investors believe it's the team selling off but it's really the platform taking their greedy cut. We understand it's not a traditional way to do things but we're focused on the long term growth of the project instead of being short lived. We just can't allow another persons platform to be the largest holder in the project for simply hosting a presale. We won't have people connect their wallets to a dApp on the website to prevent a dusting attack. If you buy presale it will be directly through the tokens smart contract.
+
+
+                  </h4>
+               </div>
+
+
+
+            </div>
+
+               
+
+            
+
+
+            
+        </div>
+
+        
+
+
+
+            
+        </div>
+
+
+
+   
+
+    <script src="js/navbar.js"></script>
+    <script src="js/mediaquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/1.31.1/tsparticles.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
